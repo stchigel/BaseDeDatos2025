@@ -208,4 +208,53 @@ begin
 delimiter ;
 
 /*4*/
+delimiter //
+create function remProd (prodCode INT, orNumber INT) returns INT deterministic
+begin
+	declare aux int default 0;
+    select quantityOrdered into aux from orderdetails where productCode=prodCode and orderNumber=orNumber;
+    if aux is null then
+		return null;
+	else
+		delete from orderdetails where productCode=prodCode and orderNumber=orNumber;
+    end if;
+    return aux;
+    end//
+delimiter ;
 
+/*5*/
+delimiter //
+create function cantStock (codProd int) returns text deterministic
+begin
+	declare aux int default 0;
+    select quantityInStock into aux from products where productCode=codProd;
+    if aux>5000 then
+		return "Sobre stock";
+	elseif aux >= 1000 and aux <= 5000 then
+		return "Stock adecuado";
+	else
+		return "Stock Bajo";
+	end if;
+    end//
+delimiter ;
+
+/*6*/
+delimiter //
+create function masVend (anio INT) returns text deterministic
+begin
+	declare aux text default "No funco nada";
+	declare aux1 text default "No prod 1";
+    declare aux2 text default "No prod 2";
+    declare aux3 text default "No prod 3";
+    select productName into aux1 from products join orderdetails on products.productCode=orderdetails.productCode join orders on orderdetails.orderNumber=orders.orderNumber
+    where YEAR(orderDate)=anio group by products.productCode order by sum(quantityOrdered) desc limit 1;
+	select productName into aux2 from products join orderdetails on products.productCode=orderdetails.productCode join orders on orderdetails.orderNumber=orders.orderNumber
+    where YEAR(orderDate)=anio group by products.productCode order by sum(quantityOrdered) desc limit 1 offset 2;
+	select productName into aux3 from products join orderdetails on products.productCode=orderdetails.productCode join orders on orderdetails.orderNumber=orders.orderNumber
+    where YEAR(orderDate)=anio group by products.productCode order by sum(quantityOrdered) desc limit 1 offset 3;
+    set aux = CONCAT_WS(", ", aux1, aux2, aux3);
+    return aux;
+    end//
+delimiter ;
+
+select masVend(2003);
