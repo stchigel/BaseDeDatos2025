@@ -59,7 +59,11 @@ delimiter ;
 delimiter //
 create procedure cantSUB ()
 begin
-	select count(*), reportsTo from employees group by employeeNumber;
+	select count(*), reportsTo from employees group by reportsTo;
+    /*Con nombre:
+    select jefe.lastname, count(*) from employees 
+    join employees as jefe on employees.reportsTo=jefe.employeeNumber group by jefe.employeeNumber;
+    */
 end//
 delimiter ;
 call cantSUB();
@@ -75,8 +79,92 @@ call totOrd();
 
 /*7*/
 delimiter //
-create procedure totOrd ()
+create procedure totOrdNom ()
 begin
-	select customerName,customerNumber,  
+	select customers.customerName, customers.customerNumber, orders.orderNumber, sum(priceEach*quantityOrdered) as Total 
+    from customers join orders on customers.customerNumber=orders.customerNumber 
+    join orderdetails on orders.orderNumber = orderdetails.orderNumber 
+    group by orders.orderNumber;
 end//
 delimiter ;
+call totOrdNom();
+
+/*8*/
+delimiter //
+create procedure coment(in ordenNomero int, in comm text, out resp bool)
+begin
+    if exists(select * from orders where ordenNomero=orderNumber) then
+		update orders set comments=comm where orderNumber=ordenNomero;
+        set resp=true;
+	else
+		set resp=false;
+	end if;
+end//
+delimiter ;
+call coment(10100,"Que lindo es caminar, que lindo es caminar, yo camino y vos no, que lindo es caminar", @resp);
+select @resp;
+select * from orders where orderNumber=10100;
+
+/*9*/
+delimiter //
+create procedure getCiudadesOffices(out listaCiudades text) 
+begin
+	declare hayFilas boolean default 1;
+	declare ciudadAct varchar(45) default "";
+	declare nombreCursor cursor for select city from offices;
+	declare continue handler for not found set hayFilas = 0;
+	open nombreCursor;
+	bucle:loop
+		fetch nombreCursor into ciudadAct;
+		if hayFilas = 0 then
+			leave bucle;
+		end if;
+		set listaCiudades =  concat(listaCiudades, ",", ciudadAct);
+	end loop bucle;
+	close nombreCursor;
+end//
+delimiter ;
+call getCiudadesOffices(@listaCiudades);
+select @listaCiudades;
+
+/*10*/
+CREATE TABLE `CancelledOrders` (
+  `orderNumber` int NOT NULL,
+  `orderDate` date NOT NULL,
+  `shippedDate` date DEFAULT NULL,
+  `customerNumber` int NOT NULL,
+  PRIMARY KEY (`orderNumber`),
+  KEY `customerNumber` (`customerNumber`),
+  CONSTRAINT `orders_ibfk_43545` FOREIGN KEY (`customerNumber`) REFERENCES `customers` (`customerNumber`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+delimiter //
+create procedure ordCan(out cantCancel int) 
+begin
+	declare hayFilas boolean default 1;
+    declare custNum int;
+    declare ordNum int;
+    declare ordDate DATE;
+    declare shipDate DATE;
+    declare stat varchar(45);
+	declare nombreCursor cursor for select orderNumber, orderDate, shippedDate, customerNumber from orders where status="Cancelled";
+	declare continue handler for not found set hayFilas = 0;
+	open nombreCursor;
+	bucle:loop
+		fetch nombreCursor into ordNum, ordDate, shipDate, custNum;
+		if hayFilas = 0 then
+			leave bucle;
+		end if;
+		set cantCancel = cantCancel+1;
+        insert into CancelledOrders values (ordNum, ordDate, shipDate, custNum);
+	end loop bucle;
+	close nombreCursor;
+end//
+delimiter ;
+drop procedure ordCan;
+call ordCan(@cantCancel);
+select @cantCancel;
+select * from CancelledOrders;
+delete from CancelledOrders;
+
+/*11*/
