@@ -167,4 +167,32 @@ select @cantCancel;
 select * from CancelledOrders;
 delete from CancelledOrders;
 
-/*11*/
+/*12*/
+delimiter //
+create procedure cancelSinComp(out listaTel text) 
+begin
+	declare hayFilas boolean default 1;
+	declare telAct varchar(45) default "";
+    declare custAct int default 0;
+    declare fechaAct date default null;
+	declare orderCursor cursor for select customers.customerNumber, phone, max(orderDate) 
+    from orders join customers on customers.customerNumber = orders.customerNumber 
+    where status="Cancelled" group by customerNumber;
+	declare continue handler for not found set hayFilas = 0;
+	open orderCursor;
+	bucle:loop
+		fetch orderCursor into custAct, telAct, fechaAct;
+		if hayFilas = 0 then
+			leave bucle;
+		end if;
+        if (select count(*) from orders where customerNumber=custAct and status!="Cancelled"
+        and orderDate>fechaAct)>0 then
+			set listaTel =  concat(listaTel, ",", telAct);
+		end if;
+	end loop bucle;
+	close orderCursor;
+end//
+delimiter ;
+drop procedure cancelSinComp;
+call cancelSinComp(@listaTel);
+select @listaTel;
