@@ -167,14 +167,37 @@ select @cantCancel;
 select * from CancelledOrders;
 delete from CancelledOrders;
 
-/*12*/
+/*11*/
 delimiter //
-create procedure cancelSinComp(out listaTel text) 
+create procedure comentario(in custNum int) 
 begin
 	declare hayFilas boolean default 1;
-	declare telAct varchar(45) default "";
-    declare custAct int default 0;
-    declare fechaAct date default null;
+    declare totalOrden float default 0;
+    declare ordNum int;
+    declare stat varchar(45);
+	declare nombreCursor cursor for 
+    select orderNumber from orders where customerNumber=custNum and comments is null;
+	declare continue handler for not found set hayFilas = 0;
+	open nombreCursor;
+	bucle:loop
+		fetch nombreCursor into ordNum;
+		if hayFilas = 0 then
+			leave bucle;
+		end if;
+        set totalOrden=(select sum(quantityOrdered*priceEach) from orderdetails where orderNumber=ordNum);
+		update orders set comments = concat("El total de la orden es ", totalOrden) where orderNumber= ordNum;
+	end loop bucle;
+	close nombreCursor;
+end//
+delimiter ;
+
+/*12*/
+alter table employees add comision int;
+delimiter //
+create procedure comisionEmp() 
+begin
+	declare hayFilas boolean default 1;
+	declare ventas int default 0;
 	declare orderCursor cursor for select customers.customerNumber, phone, max(orderDate) 
     from orders join customers on customers.customerNumber = orders.customerNumber 
     where status="Cancelled" group by customerNumber;
@@ -196,3 +219,59 @@ delimiter ;
 drop procedure cancelSinComp;
 call cancelSinComp(@listaTel);
 select @listaTel;
+
+/*13*/
+ALTER TABLE employees ADD comission int;
+delimiter //
+create procedure actuComision()
+begin
+	declare hayFilas boolean default 1;
+	declare plataVentas float default 0;
+    declare empNumber int default null;
+	declare empleadoCursor cursor for select employees.employeeNumber from employees;
+	declare continue handler for not found set hayFilas = 0;
+	open empleadoCursor;
+	bucle:loop
+		fetch empleadoCursor into empNumber;
+		if hayFilas = 0 then
+			leave bucle;
+		end if;
+        select sum(quantityOrdered*priceEach) into plataVentas from orderdetails 
+		join orders on orderdetails.orderNumber = orders.orderNumber
+		join customers on orders.customerNumber = customers.customerNumber
+		join employees on customers.salesRepEmployeeNumber = employees.employeeNumber
+		where employeeNumber=empNumber;
+        if plataVentas > 100000 then
+			update employees set employees.comission=((5*plataVentas)/100) where employeeNumber=empNumber;
+		else if plataVentas >=50000 and plataVentas<=100000 then
+			update employees set employees.comission=((3*plataVentas)/100) where employeeNumber=empNumber;
+		else
+			update employees set employees.comission=0 where employeeNumber=empNumber;
+		end if;
+		end if;
+	end loop bucle;
+    close empleadoCursor;
+delimiter ;
+
+/*14*/
+delimiter //
+create procedure asigEMP()
+begin
+	declare hayFilas boolean default 1;
+    declare empNumber int default null;
+    declare empMenosClientes int default 0;
+	declare customan cursor for select customers.salesRepEmployeeNumber from customers;
+	declare continue handler for not found set hayFilas = 0;
+	open customan;
+	bucle:loop
+		fetch customan into empNumber;
+        set empMenosClientes = (select salesRepEmployeeNumber from customers group by salesRepEmployeeNumber order by count(*) asc limit 1);
+		if hayFilas = 0 then
+			leave bucle;
+		end if;
+        if customers.salesRepEmployeeNumber is null then
+			update customers set salesRepEmployeeNumber = empMenosClientes;
+		end if;
+	end loop bucle;
+    close empleadoCursor;
+delimiter ;
