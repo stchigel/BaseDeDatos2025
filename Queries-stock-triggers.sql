@@ -34,3 +34,13 @@ begin
 	update producto set stock = (producto.stock+ingresostock_producto.cantidad);
 end//
 delimiter ;
+
+/*5*/
+/*al querer borrarlo habria error, ya que la foránea está en uso*/
+delimiter //
+create trigger borrado before delete on pedido for each row
+begin
+	delete from pedido_producto where pedido_producto.Pedido_idPedido=pedido.idPedido;
+end//
+delimiter ;
+/*otra alternativa es cambiar la restriccion*/
