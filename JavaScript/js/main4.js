@@ -19,19 +19,18 @@ form.addEventListener("submit", (e) => {
         alert("No cumple la cantidad maxima");
     }
     else{
-        tab.innerHTML += `
-        <tr>
-            <td>${nom}</td>
-            <td>${apel}</td>
-            <td>Eliminar</td>
-        </tr>`;
+        let trnuevo = document.createElement("tr");
+        trnuevo.innerHTML = `
+        <td>${nom}</td>
+        <td>${apel}</td>
+        <td><button onclick="eliminarFila(this)" class="btn btn-primary">Eliminar</button></td>`;
+        tab.appendChild(trnuevo);
     }
 
-    document.addEventListener("click", function(e) {
-        if (e.target.classList.contains("eliminar")) {
-          const fila = e.target.closest("tr");
-          fila.remove();
-        }
-      });
-
+    
   });
+  
+  function eliminarFila(boton) {
+        let fila = boton.closest("tr"); 
+        fila.remove();
+    }
