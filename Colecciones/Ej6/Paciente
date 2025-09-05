@@ -1,0 +1,17 @@
+[{
+  "_id": {
+    "$oid": "68baef34b7919f4e60bc4bb0"
+  },
+  "_dni": 24365237,
+  "nombre": "Juan",
+  "apellido": "Juan",
+  "telefono": 1192847385,
+  "nacimiento": "1990-05-07",
+  "historia": {
+    "_id": {
+      "$numberLong": "2436523700"
+    },
+    "inicio": "1994-05-07",
+    "observaciones": "Celíaquía, ex-covid19"
+  }
+}]

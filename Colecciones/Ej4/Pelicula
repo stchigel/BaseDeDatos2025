@@ -1,0 +1,14 @@
+[{
+  "_id": 231,
+  "fechaEstreno": "2033-12-12",
+  "genero": "Accion",
+  "duracion": 234,
+  "actores": [
+    {
+      "nombre": "Gonzalo",
+      "apellido": "Martinez",
+      "fechaNacimiento": "2020-6-6",
+      "nacionalidad": "Israel"
+    }
+  ]
+}]

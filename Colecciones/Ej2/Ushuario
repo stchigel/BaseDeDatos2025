@@ -1,0 +1,23 @@
+[{
+  "_id": {
+    "$oid": "68bad565b7919f4e60bc4b8d"
+  },
+  "_dni": 12123123,
+  "nombre": "Juana",
+  "apellido": "McGreidy",
+  "mail": "juana.mcgreidy@estidio.kohon.com",
+  "direcciones": [
+    {
+      "calle": "Benavidez 4607",
+      "ciudad": "CABA",
+      "codigoPostal": 1431,
+      "provincia": "CABA"
+    },
+    {
+      "calle": "Aizpurua 3203",
+      "ciudad": "Ituzaingó",
+      "codigoPostal": 1431,
+      "provincia": "Provincia de Buenos Aires"
+    }
+  ]
+}]

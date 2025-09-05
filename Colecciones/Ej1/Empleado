@@ -1,0 +1,16 @@
+[{
+  "_id": {
+    "$oid": "68bace8cb7919f4e60bc4b86"
+  },
+  "_dni": 12123123,
+  "nombre": "Segio",
+  "apellido": "Perez",
+  "mail": "sergio.checho.perez@f1.race.com",
+  "fechaNacimiento": "1990-03-02",
+  "puesto": "Recepcionista",
+  "carnet": {
+    "numeroSerie": 703,
+    "fechaEmision": "2026-03-16",
+    "fechaVencimiento": "2026-12-31"
+  }
+}]

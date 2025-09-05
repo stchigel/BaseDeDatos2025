@@ -1,0 +1,18 @@
+[{
+  "_id": 444,
+  "_dniUsu": 12123123,
+  "fecha": "2025-07-13",
+  "total": 650,
+  "productos": [
+    {
+      "_id": 47455,
+      "cantidad": 3,
+      "precio": 200
+    },
+    {
+      "_id": 47456,
+      "cantidad": 1,
+      "precio": 50
+    }
+  ]
+}]

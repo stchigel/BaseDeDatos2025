@@ -1,0 +1,17 @@
+[{
+  "_id": 123,
+  "nombre": "Gabriel",
+  "apellido": "Hachue",
+  "mail": "gabrielhauche@gmail.com",
+  "titulo": "Finanzas",
+  "materias": [
+    {
+      "_id": 1234,
+      "nombre": "matematica avanzada II"
+    },
+    {
+      "_id": 1236,
+      "nombre": "Economía y Gestión de Recursos"
+    }
+  ]
+}]

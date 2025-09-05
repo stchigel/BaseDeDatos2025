@@ -1,0 +1,10 @@
+[{
+  "_id": 35623731,
+  "_historia": {
+    "$numberLong": "12736284700"
+  },
+  "diagnostico": "Juan",
+  "tratamiento": 1192847385,
+  "consulta": "1990-05-07",
+  "medico": "Semero Entesta"
+}]

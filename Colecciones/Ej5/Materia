@@ -1,0 +1,12 @@
+[{
+  "_id": 234,
+  "nombre": "Matematica",
+  "horasSemanales": 234,
+  "profesores": [
+    {
+      "_id": 333,
+      "nombre": "Juan",
+      "apellido": "Perez"
+    }
+  ]
+}]
