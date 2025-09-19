@@ -1,0 +1,72 @@
+;
+
+db.Uzuario.insertOne( {
+    
+  "_id": 5,
+  "nombre": "Geronimo",
+  "apellido": "Benavidez",
+  "edad": 28,
+  "mail": "elmomocalamar@gmail.com",
+  "compras": [
+    {
+      "id_compra": 1,
+      "monto": 120000,
+      "productos": [
+        "cafetera 1",
+        "cafetera 2",
+        "cafetera 3",
+        "cafetera 4"
+      ]
+    },
+    {
+      "id_compra": 2,
+      "monto": 15000000,
+      "productos": [
+        "Propiedad 1",
+        "Propiedad 2",
+        "Propiedad 3"
+      ]
+    },
+    {
+      "id_compra": 3,
+      "monto": 200,
+      "productos": [
+        "auris de virgo",
+        "ladrillo 1",
+        "ladrillo 2",
+        "spirito italiano - Pavarotti"
+      ]
+    }
+  ]
+
+} );
+
+db.Uzuario.insertOne( {
+    
+    "_id": 6,
+    "nombre": "Davo",
+    "apellido": "Xeneize",
+    "edad": 28,
+    "mail": "problemas@gmail.com",
+    "compras": [
+      {
+        "id_compra": 1,
+        "monto": 120000,
+        "productos": [
+          "D de Davo"
+        ]
+      }
+    ]
+  
+  } );
+
+db.Uzuario.find({}, {"compras.monto":1});
+
+/*5*/db.Uzuario.find({"compras.5":{$exists:true}}, {compras:1});
+
+/*6*/db.Uzuario.find({"compras.id_compra":1}, {compras:1});
+
+/*8*/db.Uzuario.updateOne({nombre:"Lucas", apellido:"Martínez"},{$set:{mail:"lucas.m@gmail.com"}});
+db.Uzuario.find({_id:3},{});
+
+/*9*/

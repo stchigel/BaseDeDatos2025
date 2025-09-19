@@ -1,0 +1,362 @@
+/*1*/
+Hecho
+/*2*/
+db.Restaurante.insertMany([{
+  "_id": 3,
+  "nombre": "La Parrillita",
+  "direccion": "Rivadavia 10234",
+  "telefono": 1122334455,
+  "horarios": {
+    "apertura": 1100,
+    "clausura": 2330
+  },
+  "menu": {
+    "platos": [
+      {
+        "nombre": "Asado completo",
+        "precio": 45000,
+        "descripcion": "Costilla, vacío, chorizo y morcilla servidos con papas fritas",
+        "observacion": "Puede provocar ganas de dormir después de comer",
+        "categoria": "Pizzas",
+        "aptitud": []
+      },
+      {
+        "nombre": "Hamburguesa vegana doble",
+        "precio": 22000,
+        "descripcion": "Hamburguesa hecha de aire pero doble",
+        "observacion": "Cocinar poco para mantener la mística",
+        "categoria": "Hamburguesas",
+        "aptitud": [
+          "vegano"
+        ]
+      }
+    ],
+    "postres": [
+      {
+        "nombre": "Flan clásico",
+        "precio": 7000,
+        "descripcion": "Flan de huevo con dulce de leche",
+        "observacion": "Puede venir con caramelo líquido o duro",
+        "categoria": 0,
+        "aptitud": []
+      },
+      {
+        "nombre": "Cheesecake sin TACC y vegano",
+        "precio": 25000,
+        "descripcion": "Versión premium, con salsa de frutos rojos",
+        "observacion": "ideal para celiacos y veganos",
+        "categoria": 1,
+        "aptitud": [
+          "Sin TACC",
+          "vegano"
+        ]
+      }
+    ],
+    "bebidas": [
+      {
+        "nombre": "Agua",
+        "precio": 1,
+        "descripcion": "Agua",
+        "observacion": "Aguosa",
+        "categoria": "Aguas",
+        "aptitud": [
+          "vegetariano",
+          "Sin TACC",
+          "vegano"
+        ]
+      },
+      {
+        "nombre": "CocaCola",
+        "precio": 3.5,
+        "descripcion": "Magnifica",
+        "observacion": "Este producto contiene el mejor sabor de la historia",
+        "categoria": "Gaseosa",
+        "aptitud": []
+      }
+    ]
+  },
+  "promociones": [
+    {
+      "nombre": "Promo Parrilla para 2",
+      "descuento": 20,
+      "inicio": "2025-6-15",
+      "fin": "2025-6-30"
+    }
+  ],
+  "servicios": [
+    "Parking",
+    "Acceso silla de ruedas"
+  ],
+  "reseñas": [
+    {
+      "mail": "maria@gmail.com",
+      "opinion": "La carne espectacular, la atención un 10",
+      "estrellas": 5
+    }
+  ],
+  "eventosespeciales": [
+    {
+      "nombre": "Festival de la Carne",
+      "descripcion": "Un día entero para probar cortes especiales y vino libre",
+      "horarios": {
+        "apertura": 1200,
+        "clausura": 2300
+      },
+      "fecha": "2025-7-9"
+    }
+  ],
+  "metodospago": [
+    "Tarjeta",
+    "QR",
+    "Efectivo"
+  ]
+},
+{
+  "_id": 4,
+  "nombre": "Veggie House",
+  "direccion": "Av. Corrientes 5050",
+  "telefono": 1166778899,
+  "horarios": {
+    "apertura": 1000,
+    "clausura": 2230
+  },
+  "menu": {
+    "platos": [
+      {
+        "nombre": "Wrap de Falafel",
+        "precio": 15000,
+        "descripcion": "Falafel con vegetales frescos y salsa de yogur",
+        "observacion": "Ideal para comer liviano",
+        "categoria": "Hamburguesas",
+        "aptitud": [
+          "vegano"
+        ]
+      },
+      {
+        "nombre": "Pizza de Vegetales",
+        "precio": 18000,
+        "descripcion": "Pizza con base fina y mix de vegetales de estación",
+        "observacion": "Puede contener algo de queso",
+        "categoria": "Pizzas",
+        "aptitud": []
+      }
+    ],
+    "postres": [
+      {
+        "nombre": "Mousse de Palta",
+        "precio": 12000,
+        "descripcion": "Postre cremoso de palta con cacao",
+        "observacion": "Sabor particular, no para todos",
+        "categoria": 0,
+        "aptitud": [
+          "vegano"
+        ]
+      }
+    ],
+    "bebidas": [
+      {
+        "nombre": "Agua",
+        "precio": 1,
+        "descripcion": "Agua",
+        "observacion": "Aguosa",
+        "categoria": "Aguas",
+        "aptitud": [
+          "vegetariano",
+          "Sin TACC",
+          "vegano"
+        ]
+      },
+      {
+        "nombre": "CocaCola",
+        "precio": 3.5,
+        "descripcion": "Magnifica",
+        "observacion": "Este producto contiene el mejor sabor de la historia",
+        "categoria": "Gaseosa",
+        "aptitud": []
+      }
+    ]
+  },
+  "promociones": [
+    {
+      "nombre": "Martes Veganos",
+      "descuento": 15,
+      "inicio": "2025-5-6",
+      "fin": "2025-12-30"
+    }
+  ],
+  "servicios": [
+    "Parking",
+    "Acceso silla de ruedas"
+  ],
+  "reseñas": [
+    {
+      "mail": "sofia@outlook.com",
+      "opinion": "La mejor opción vegana de la ciudad",
+      "estrellas": 4.8
+    },
+    {
+      "mail": "marcos@gmail.com",
+      "opinion": "Muy bueno pero caro",
+      "estrellas": 3.9
+    }
+  ],
+  "eventosespeciales": [
+    {
+      "nombre": "Noche Vegana",
+      "descripcion": "Menú exclusivo de degustación para veganos",
+      "horarios": {
+        "apertura": 1900,
+        "clausura": 2230
+      },
+      "fecha": "2025-10-1"
+    }
+  ],
+  "metodospago": [
+    "Tarjeta",
+    "QR",
+    "Efectivo"
+  ]
+}])
+db.Restaurante.insertOne({
+  "_id": 1,
+  "nombre": "Spíritu Italiano",
+  "direccion": "Alvarellos2344",
+  "telefono": 1112341234,
+  "horarios": {
+    "apertura": 1200,
+    "clausura": 2355
+  },
+  "menu": {
+    "platos": [
+      {
+        "nombre": "Pizza napolitana",
+        "precio": 20000000,
+        "descripcion": "Piza con salsa de tomate, carne y arriba rayas medianamente grueso queso parmecciano",
+        "observacion": "este plato puede llegar a darte: 2 ladrillos en las manos, 6 cafeteras, soledad con alguien al lado o 3 propiedades",
+        "categoria": "Pizzas",
+        "aptitud": []
+      },
+      {
+        "nombre": "Hamburguesa vegana",
+        "precio": 20000000,
+        "descripcion": "Hamburguesa hecha de aire",
+        "observacion": "Este producto contiene sustancias químicas que el estado de California reconoce como causantes de amnesia.",
+        "categoria": "Hamburguesas",
+        "aptitud": [
+          "vegano"
+        ]
+      }
+    ],
+    "postres": [
+      {
+        "nombre": "Flan con palta",
+        "precio": 20000000,
+        "descripcion": "El peor flan de tu vida",
+        "observacion": "mas feo que comer cemento",
+        "categoria": 0,
+        "aptitud": []
+      },
+      {
+        "nombre": "Cheesecake sin TACC y vegano",
+        "precio": 20000000,
+        "descripcion": "Cheesecake pero en vez de masa tiene nada osea solo la crema",
+        "observacion": "imaginate ser celiaco, palermitaneo de mierda",
+        "categoria": 1,
+        "aptitud": [
+          "Sin TACC",
+          "vegano"
+        ]
+      }
+    ],
+    "bebidas": [
+      {
+        "nombre": "Agua",
+        "precio": 1,
+        "descripcion": "Agua",
+        "observacion": "Aguosa",
+        "categoria": "Aguas",
+        "aptitud": [
+          "vegetariano",
+          "Sin TACC",
+          "vegano"
+        ]
+      },
+      {
+        "nombre": "CocaCola",
+        "precio": 3.5,
+        "descripcion": "Magnifica",
+        "observacion": "Este producto contiene el mejor sabor de la historia",
+        "categoria": "Gaseosa",
+        "aptitud": []
+      }
+    ]
+  },
+  "promociones": [
+    {
+      "nombre": "Descuento del 40% en Agua",
+      "descuento": 40,
+      "inicio": "2025-4-20",
+      "fin": "2025-4-21"
+    },
+    {
+      "nombre": "2% de Cashback si compras lo mas caro",
+      "descuento": 2,
+      "inicio": "2025-9-20",
+      "fin": "2045-11-21"
+    }
+  ],
+  "servicios": [
+    "Parking",
+    "Acceso silla de ruedas"
+  ],
+  "reseñas": [
+    {
+      "mail": "juanperez@gmail.com",
+      "opinion": "Buen serivico, pero el flan con palta me hizo vomitar 8 veces",
+      "estrellas": 3.5
+    },
+    {
+      "mail": "benja@hotmail.com",
+      "opinion": "Me encanto el flan con palta, lo mejor de todo",
+      "estrellas": 5
+    }
+  ],
+  "eventosespeciales": [
+    {
+      "nombre": "Degustaciones",
+      "descripcion": "Un evento para probar los mejores sabores y platillos en el mundo",
+      "horarios": {
+        "apertura": 1200,
+        "clausura": 2300
+      },
+      "fecha": "2020-1-1"
+    },
+    {
+      "nombre": "Noche la dinastia",
+      "descripcion": "Un evento para todos aquellos integrates y fans de la Coscu Army y la dinastia ",
+      "horarios": {
+        "apertura": 2000,
+        "clausura": 2200
+      },
+      "fecha": "2010-1-1"
+    }
+  ],
+  "metodospago": [
+    "Tarjeta",
+    "QR",
+    "Efectivo"
+  ]
+})
+/*3*/
+db.Restaurante.count()
+db.Restaurante.countDocuments()
+/*4*/
+db.Restaurante.find({$or:[{"menu.platos.aptitud": "vegano"}, {"menu.platos.aptitud" : "pet-friendly"}, {servicios: "delivery"}]}, {nombre: 1}).sort({nombre: 1})
+/*5*/
+db.Restaurante.updateMany({}, {$set: {ultima_actualizacion: new Date()}})
+/*6*/
+db.Restaurante.find({"promociones.descuento": 10}, {nombre: 1})
+/*7*/
+db.Restaurante.find({"promociones.nombre": "jubilados"}, {nombre: 1})
+/*8*/
+db.Restaurante.updateMany({$or:[{servicios: "delivery"}, {servicios: "reservas online"}]}, {$set: {"horarios.apertura": 1130}})
