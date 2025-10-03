@@ -4,7 +4,7 @@
   "direccion": "Alvarellos2344",
   "telefono": 1112341234,
   "horarios": {
-    "apertura": 1130,
+    "apertura": 1200,
     "clausura": 2355
   },
   "menu": {
@@ -76,19 +76,37 @@
     {
       "nombre": "Descuento del 40% en Agua",
       "descuento": 40,
-      "inicio": "2025-4-20",
-      "fin": "2025-4-21"
+      "inicio": {
+        "$date": "2025-10-03T00:00:00.000Z"
+      },
+      "fin": {
+        "$date": "2025-10-21T00:00:00.000Z"
+      }
     },
     {
       "nombre": "2% de Cashback si compras lo mas caro",
       "descuento": 2,
-      "inicio": "2025-9-20",
-      "fin": "2045-11-21"
+      "inicio": {
+        "$date": "2025-09-20T00:00:00.000Z"
+      },
+      "fin": {
+        "$date": "2045-11-21T00:00:00.000Z"
+      }
+    },
+    {
+      "nombre": "Promo Restaurantes primeros",
+      "descuento": 20,
+      "inicio": {
+        "$date": "2025-11-01T00:00:00.000Z"
+      },
+      "fin": {
+        "$date": "2025-12-31T00:00:00.000Z"
+      }
     }
   ],
   "servicios": [
     "Parking",
-    "Acceso silla de ruedas",
+    "reservas online",
     "delivery"
   ],
   "reseñas": [
@@ -103,6 +121,11 @@
       "estrellas": 5
     }
   ],
+  "metodospago": [
+    "Tarjeta",
+    "QR",
+    "Efectivo"
+  ],
   "eventosespeciales": [
     {
       "nombre": "Degustaciones",
@@ -111,7 +134,9 @@
         "apertura": 1200,
         "clausura": 2300
       },
-      "fecha": "2020-1-1"
+      "fecha": {
+        "$date": "2020-01-01T00:00:00.000Z"
+      }
     },
     {
       "nombre": "Noche la dinastia",
@@ -120,20 +145,13 @@
         "apertura": 2000,
         "clausura": 2200
       },
-      "fecha": "2010-1-1"
+      "fecha": {
+        "$date": "2010-01-01T00:00:00.000Z"
+      }
     }
-  ],
-  "metodospago": [
-    "Tarjeta",
-    "QR",
-    "Efectivo"
-  ],
-  "ultima_actualizacion": {
-    "$date": {
-      "$numberLong": "1758293590905"
-    }
-  }
-},{
+  ]
+},
+{
   "_id": 2,
   "nombre": "El Barrilito",
   "direccion": "Av. Combatientes de Malvinas 3401",
@@ -211,14 +229,32 @@
     {
       "nombre": "Descuento del 40% en Agua",
       "descuento": 40,
-      "inicio": "2025-4-20",
-      "fin": "2025-4-21"
+      "inicio": {
+        "$date": "2025-10-03T00:00:00.000Z"
+      },
+      "fin": {
+        "$date": "2025-04-21T00:00:00.000Z"
+      }
     },
     {
       "nombre": "jubilados",
       "descuento": 2,
-      "inicio": "2025-9-20",
-      "fin": "2045-11-21"
+      "inicio": {
+        "$date": "2025-09-20T00:00:00.000Z"
+      },
+      "fin": {
+        "$date": "2045-11-21T00:00:00.000Z"
+      }
+    },
+    {
+      "nombre": "Promo Restaurantes primeros",
+      "descuento": 20,
+      "inicio": {
+        "$date": "2025-11-01T00:00:00.000Z"
+      },
+      "fin": {
+        "$date": "2025-12-31T00:00:00.000Z"
+      }
     }
   ],
   "servicios": [
@@ -230,31 +266,6 @@
       "mail": "juanperez@gmail.com",
       "opinion": "Buen serivico, pero el flan con palta me hizo vomitar 8 veces",
       "estrellas": 3.5
-    },
-    {
-      "mail": "benja@hotmail.com",
-      "opinion": "Me encanto el flan con palta, lo mejor de todo",
-      "estrellas": 5
-    }
-  ],
-  "eventosespeciales": [
-    {
-      "nombre": "Degustaciones",
-      "descripcion": "Un evento para probar los mejores sabores y platillos en el mundo",
-      "horarios": {
-        "apertura": 1200,
-        "clausura": 2300
-      },
-      "fecha": "2020-1-1"
-    },
-    {
-      "nombre": "Noche la dinastia",
-      "descripcion": "Un evento para todos aquellos integrates y fans de la Coscu Army y la dinastia ",
-      "horarios": {
-        "apertura": 2000,
-        "clausura": 2200
-      },
-      "fecha": "2010-1-1"
     }
   ],
   "metodospago": [
@@ -263,17 +274,40 @@
     "Efectivo"
   ],
   "ultima_actualizacion": {
-    "$date": {
-      "$numberLong": "1758293590905"
+    "$date": "2025-09-19T14:53:10.905Z"
+  },
+  "eventosespeciales": [
+    {
+      "nombre": "Degustaciones",
+      "descripcion": "Un evento para probar los mejores sabores y platillos en el mundo",
+      "horarios": {
+        "apertura": 1200,
+        "clausura": 2300
+      },
+      "fecha": {
+        "$date": "2020-01-01T00:00:00.000Z"
+      }
+    },
+    {
+      "nombre": "Musica en vivo",
+      "descripcion": "Un evento para todos aquellos integrates y fans de la Coscu Army y la dinastia ",
+      "horarios": {
+        "apertura": 2000,
+        "clausura": 2200
+      },
+      "fecha": {
+        "$date": "2010-01-01T00:00:00.000Z"
+      }
     }
-  }
-},{
+  ]
+},
+{
   "_id": 3,
   "nombre": "La Parrillita",
   "direccion": "Rivadavia 10234",
   "telefono": 1122334455,
   "horarios": {
-    "apertura": 1100,
+    "apertura": 1200,
     "clausura": 2330
   },
   "menu": {
@@ -345,8 +379,32 @@
     {
       "nombre": "Promo Parrilla para 2",
       "descuento": 20,
-      "inicio": "2025-6-15",
-      "fin": "2025-6-30"
+      "inicio": {
+        "$date": "2025-06-15T00:00:00.000Z"
+      },
+      "fin": {
+        "$date": "2025-06-30T00:00:00.000Z"
+      }
+    },
+    {
+      "nombre": "MEGA PROMO EN AGUA",
+      "descuento": 41,
+      "inicio": {
+        "$date": "2025-09-10T00:00:00.000Z"
+      },
+      "fin": {
+        "$date": "2025-10-10T00:00:00.000Z"
+      }
+    },
+    {
+      "nombre": "PARRILA AL 41% DE AUMENTO",
+      "descuento": 41,
+      "inicio": {
+        "$date": "2025-09-10T00:00:00.000Z"
+      },
+      "fin": {
+        "$date": "2025-10-10T00:00:00.000Z"
+      }
     }
   ],
   "servicios": [
@@ -360,6 +418,14 @@
       "estrellas": 5
     }
   ],
+  "metodospago": [
+    "Tarjeta",
+    "QR",
+    "Efectivo"
+  ],
+  "ultima_actualizacion": {
+    "$date": "2025-09-19T14:53:10.905Z"
+  },
   "eventosespeciales": [
     {
       "nombre": "Festival de la Carne",
@@ -368,26 +434,19 @@
         "apertura": 1200,
         "clausura": 2300
       },
-      "fecha": "2025-7-9"
+      "fecha": {
+        "$date": "2025-07-09T00:00:00.000Z"
+      }
     }
-  ],
-  "metodospago": [
-    "Tarjeta",
-    "QR",
-    "Efectivo"
-  ],
-  "ultima_actualizacion": {
-    "$date": {
-      "$numberLong": "1758293590905"
-    }
-  }
-},{
+  ]
+},
+{
   "_id": 4,
   "nombre": "Veggie House",
   "direccion": "Av. Corrientes 5050",
   "telefono": 1166778899,
   "horarios": {
-    "apertura": 1000,
+    "apertura": 1200,
     "clausura": 2230
   },
   "menu": {
@@ -399,7 +458,7 @@
         "observacion": "Ideal para comer liviano",
         "categoria": "Hamburguesas",
         "aptitud": [
-          "vegano"
+          "Sin TACC"
         ]
       },
       {
@@ -450,8 +509,12 @@
     {
       "nombre": "Martes Veganos",
       "descuento": 10,
-      "inicio": "2025-5-6",
-      "fin": "2025-12-30"
+      "inicio": {
+        "$date": "2025-05-06T00:00:00.000Z"
+      },
+      "fin": {
+        "$date": "2025-12-30T00:00:00.000Z"
+      }
     }
   ],
   "servicios": [
@@ -470,6 +533,14 @@
       "estrellas": 3.9
     }
   ],
+  "metodospago": [
+    "Tarjeta",
+    "QR",
+    "Efectivo"
+  ],
+  "ultima_actualizacion": {
+    "$date": "2025-09-19T14:53:10.905Z"
+  },
   "eventosespeciales": [
     {
       "nombre": "Noche Vegana",
@@ -478,17 +549,9 @@
         "apertura": 1900,
         "clausura": 2230
       },
-      "fecha": "2025-10-1"
+      "fecha": {
+        "$date": "2025-10-01T00:00:00.000Z"
+      }
     }
-  ],
-  "metodospago": [
-    "Tarjeta",
-    "QR",
-    "Efectivo"
-  ],
-  "ultima_actualizacion": {
-    "$date": {
-      "$numberLong": "1758293590905"
-    }
-  }
+  ]
 }]

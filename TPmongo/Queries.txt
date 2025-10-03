@@ -1,5 +1,5 @@
 /*1*/
-Hecho
+/*Hecho*/
 /*2*/
 db.Restaurante.insertMany([{
   "_id": 3,
@@ -347,16 +347,72 @@ db.Restaurante.insertOne({
     "Efectivo"
   ]
 })
+/*despues cambiamos a ISODate*/
+
 /*3*/
 db.Restaurante.count()
 db.Restaurante.countDocuments()
-/*4*/
-db.Restaurante.find({$or:[{"menu.platos.aptitud": "vegano"}, {"menu.platos.aptitud" : "pet-friendly"}, {servicios: "delivery"}]}, {nombre: 1}).sort({nombre: 1})
-/*5*/
+/*4*/ 
+db.Restaurante.find({{"menu.platos.aptitud": "vegano"}, {"menu.platos.aptitud" : "pet-friendly"}, {servicios: "delivery"}}, {nombre: 1}).sort({nombre: 1})
+/*5*/ /*PREGUNTAR*/
 db.Restaurante.updateMany({}, {$set: {ultima_actualizacion: new Date()}})
 /*6*/
 db.Restaurante.find({"promociones.descuento": 10}, {nombre: 1})
 /*7*/
 db.Restaurante.find({"promociones.nombre": "jubilados"}, {nombre: 1})
 /*8*/
-db.Restaurante.updateMany({$or:[{servicios: "delivery"}, {servicios: "reservas online"}]}, {$set: {"horarios.apertura": 1130}})
+db.Restaurante.updateMany({$or:[{servicios: "delivery"}, {servicios: "reservas online"}]}, {$set: {"horarios.apertura": 1130}, $set: {ultima_actualizacion: new Date()}})
+/*9*/
+db.Restaurante.find({"eventosespeciales.nombre" : "Musica en vivo"},{nombre: 1, direccion: 1, telefono: 1})
+/*10*/
+db.Restaurante.updateOne({_id: 3}, {$push: {promociones: {"nombre": "MEGA PROMO EN AGUA", "descuento": 41, "inicio": ISODate("2025-09-10"), "fin": ISODate("2025-10-10")}}, $set: {ultima_actualizacion: new Date()}})
+/*11*/
+db.Restaurante.find({promociones: {$elemMatch: {inicio: {$lt: ISODate()}, fin: {$gt: ISODate()}}}},{nombre: 1, servicios: 1, menu: 1}).sort({promociones.descuento: -1}).limit(1)
+/*12*/
+db.Restaurante.find({$or:[{"promociones.nombre": "jubilados"}, {"promociones.nombre": "estudiantes"}]}, {})
+/*13*/
+db.Restaurante.find({promociones: {$elemMatch: {descuento: { $gt: 20 },inicio: { $lt: ISODate() },fin: { $gt: ISODate() }}}, servicios: "delivery",servicios: "reservas online"}, { nombre: 1, direccion: 1, telefono: 1 })
+/*14*/
+db.Restaurante.find({"promociones": {$size : 0}}, {nombre: 1, direccion: 1, telefono: 1})
+/*15*/
+db.Restaurante.find({_id: 2}, {reseñas: 1})
+/*16*/
+db.Restaurante.find({$expr: { $gte: [ { $size: "$promociones" }, 3 ] }}, {nombre: 1, direccion: 1, telefono: 1})
+/*17*/
+/*El operador $elemMatch te devuelve los documentos que, en un array especifico, tengan un elemento que cumpla con todas las condiciones*/
+db.Restaurante.find({promociones: {$elemMatch: {inicio: { $lt: ISODate() },fin: { $gt: ISODate() }}}}, {})
+/*18*/
+db.Restaurante.find({"menu.platos.aptitud": "Sin TACC"}, {nombre: 1, direccion: 1, telefono: 1})
+/*19*/
+db.Restaurante.find({promociones: {$not: {$elemMatch: {$or: [{inicio: {$gt: ISODate()}}, {fin: { $lte: ISODate()}}]}}}}, { nombre: 1, direccion: 1, telefono: 1 })
+/*20*/ 
+db.Restaurante.deleteMany( { $or: [ { menu: { $exists: false } }, { menu: null } ] })
+/*21*/
+/*$inc*/
+db.Restaurante.updateMany({"horarios.apertura": { $gt: 1200 }}, {$inc: {"horarios.apertura": -100}, $set: {ultima_actualizacion: new Date()}})
+/*$max*/
+db.Restaurante.updateMany({}, {$max: {"horarios.apertura": 1200}, $set: {ultima_actualizacion: new Date()}})
+/*$mul*/
+db.Restaurante.updateMany({"_id": { $gt: 4 }}, {$mul: {"_id": 10}, $set: {ultima_actualizacion: new Date()}})
+/*$rename*/
+db.Restaurante.updateMany({ "eventosespeciales": { $ne: null } }, { $rename: {"eventosespeciales": "eventos"}, $set: {ultima_actualizacion: new Date()}})
+db.Restaurante.updateMany({ "eventos": { $ne: null } }, { $rename: {"eventos": "eventosespeciales"}, $set: {ultima_actualizacion: new Date()}})
+/*$unset*/
+db.Restaurante.updateMany({ _id: 1 }, { $unset: {ultima_actualizacion: ""}, $set: {ultima_actualizacion: new Date()}})
+/*$pop*/
+db.Restaurante.updateOne( { _id: 2 }, { $pop: { reseñas: 1 }, $set: {ultima_actualizacion: new Date()}})
+/*$pull*/
+db.Restaurante.updateMany({_id: 3},{ $pull: { servicios: { $in: [ "Parking"] }, metodospago: "QR" }, $set: {ultima_actualizacion: new Date()}})
+/*$push*/
+db.Restaurante.updateMany({_id: { $lt: 3 }}, {$push: {promociones: {
+      "nombre": "Promo Restaurantes primeros",
+      "descuento": 20,
+      "inicio": ISODate("2025-11-01"),
+      "fin": ISODate("2025-12-31")}}, $set: {ultima_actualizacion: new Date()}})
+/*22*/
+/*Exportar*/
+mongoexport --db <nombre_base> --collection <nombre_coleccion> --out <archivo.json> --jsonArray
+mongoexport --db PedidosYa --collection Restaurante --out Restaurante.json --jsonArray
+/*Importar*/
+mongoimport --db <nombre_base> --collection <nombre_coleccion> --file <archivo.json> --jsonArray
+mongoimport --db PedidosYa --collection Restaurante --file Restaurante.json --jsonArray
