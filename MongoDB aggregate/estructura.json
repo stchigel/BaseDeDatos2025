@@ -1,0 +1,129 @@
+
+[
+    {
+    "_dni": 17384723,
+    "nombre": "Gerónimo",
+    "apellido": "Benavidez",
+    "nacimiento": ISODate("1989-04-11"),
+    "compras": [
+        {
+            "_id": 1,
+            "fecha": ISODate("2025-05-02"),
+            "productos": [
+                {
+                    "_id": 1,
+                    "descripcion": "Spiritu Italiano Do Pavaroti",
+                    "precio": 100.0,
+                    "cantidad": 2
+                },
+                {
+                    "_id": 2,
+                    "descripcion": "Cafetera AMG678",
+                    "precio": 1000.0,
+                    "cantidad": 6
+                }
+            ]
+        },
+        {
+            "_id": 2,
+            "fecha": ISODate("2025-05-03"),
+            "productos": [
+                {
+                    "_id": 3,
+                    "descripcion": "Nutella",
+                    "precio": 100.0,
+                    "cantidad": 3
+                },
+                {
+                    "_id": 4,
+                    "descripcion": "Torino TS 7 Bancadas 1973",
+                    "precio": 100000.0,
+                    "cantidad": 1
+                }
+            ]
+        }
+    ]
+},
+{
+    "_dni": 44374624,
+    "nombre": "Matias",
+    "apellido": "Cardozo",
+    "nacimiento": ISODate("2021-10-11"),
+    "compras": [
+        {
+            "_id": 3,
+            "fecha": ISODate("2024-10-05"),
+            "productos": [
+                {
+                    "_id": 5,
+                    "descripcion": "Moneda Libra coin",
+                    "precio": 1372.37,
+                    "cantidad": 2
+                },
+                {
+                    "_id": 6,
+                    "descripcion": "Curso de como vender cursos",
+                    "precio": 1500000.0,
+                    "cantidad": 2
+                }
+            ]
+        },
+        {
+            "_id": 4,
+            "fecha": ISODate("2025-05-03"),
+            "productos": [
+                {
+                    "_id": 7,
+                    "descripcion": "Nutella",
+                    "precio": 100.0,
+                    "cantidad": 3
+                },
+                {
+                    "_id": 8,
+                    "descripcion": "Lamborghini Huracan",
+                    "precio": 10000000.0,
+                    "cantidad": 1
+                }
+            ]
+        }
+    ]
+},
+{
+    "_dni": 17284723,
+    "nombre": "Tomas",
+    "apellido": "Mazza",
+    "nacimiento": ISODate("2000-10-28"),
+    "compras": [
+        {
+            "_id": 5,
+            "fecha": ISODate("2024-10-05"),
+            "productos": [
+                {
+                    "_id": 9,
+                    "descripcion": "Alonso",
+                    "precio": 1.0,
+                    "cantidad": 1
+                },
+                {
+                    "_id": 10,
+                    "descripcion": "Manteca mantecosa",
+                    "precio": 1500.0,
+                    "cantidad": 20
+                }
+            ]
+        },
+        {
+            "_id": 6,
+            "fecha": ISODate("2025-05-03"),
+            "productos": [
+                {
+                    "_id": 11,
+                    "descripcion": "Compañia de suplementos",
+                    "precio": 1455000.0,
+                    "cantidad": 3
+                }
+            ]
+        }
+    ]
+}
+]

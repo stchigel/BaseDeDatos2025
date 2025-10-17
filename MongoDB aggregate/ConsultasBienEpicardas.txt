@@ -1,0 +1,17 @@
+/*1*/
+db.Usuario.aggregate([ { $group : { _id : null, edad : {$avg:{$divide:[{ $subtract: [new Date(), "$nacimiento"] }, 1000 * 60 * 60 * 24 * 365.25 ]}  } } } ])
+/*2*/
+db.Usuario.aggregate([ { $unwind : "$compras" }, { $unwind : "$compras.productos"}, {$group: {_id: "$compras.productos._id", stockVendido:{ $sum: "$compras.productos.cantidad" }}} ])
+/*3*/
+db.Usuario.aggregate([{ $unwind: "$compras" }, { $unwind: "$compras.productos" }, { $group: { _id: "$_dni", nombreCli: { $first: "$nombre" }, totalGastado: { $sum: { $multiply: ["$compras.productos.precio", "$compras.productos.cantidad"] } } } }])
+/*4*/
+db.Usuario.aggregate([{$unwind: "$compras"},{ $group: { _id: "$_dni",nombreCli:{$first : "$nombre"}, cantCompras:{$sum: 1}}}, {$match: {cantCompras : {$gte : 2}}}])
+/*5*/
+db.Usuario.aggregate([{$unwind: "$compras"},{ $group: { _id: "$_dni",nombreCli:{$first : "$nombre"}, cantCompras:{$sum: 1}}}, {$sort:{ cantCompras: -1}}, {$limit: 1}])
+/*6*/
+db.Usuario.aggregate([ { $unwind : "$compras" }, { $unwind : "$compras.productos"},{$group : {_id: "$compras._id", promUnidadesOrdenadas:{$avg: "$compras.productos.cantidad"}}}])
+/*7*/
+db.Usuario.aggregate([ { $unwind : "$compras" }, { $unwind : "$compras.productos"}, {$group: {_id: "$compras.productos._id", cantVeces:{ $sum: 1 }}} ])
+/*8*/ /*Hardcodeado pq si no con la hora especifica es un lio*/
+db.Usuario.aggregate([ { $unwind : "$compras" }, { $unwind : "$compras.productos"}, {$match: {"compras.fecha" : ISODate("2025-10-17")}} , { $group : {_id: null, total: {$sum : { $multiply: ["$compras.productos.precio", "$compras.productos.cantidad"] } } } } ])
+/*9*/
